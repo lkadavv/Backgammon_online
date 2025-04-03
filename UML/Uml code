@@ -1,0 +1,30 @@
+@startuml
+actor Player
+participant Game
+participant Dice
+participant Board
+participant Opponent
+participant Rules
+
+Player -> Dice: Roll dice
+Dice -> Game: Send roll result
+Game -> Rules: Validate roll
+Rules -> Game: Return validation result
+Game -> Board: Check valid moves
+Board -> Game: Return possible moves
+Game -> Player: Show available moves
+Player -> Game: Select move
+Game -> Rules: Validate move
+Rules -> Game: Return validation result
+Game -> Board: Update board state
+Board -> Game: Confirm move
+Game -> Opponent: Check if opponent's checker is hit
+Opponent -> Board: Return checker status
+Game -> Player: Move completed
+Game -> Opponent: Pass turn
+Game -> Board: Check if Player has borne off all checkers
+Board -> Game: Return win condition status
+Game -> Player: Declare victory if all checkers are borne off
+
+@enduml
+
